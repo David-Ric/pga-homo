@@ -1794,6 +1794,7 @@ async function popularProd(produto: iproduto[]) {
 
     setrespostaSank('Atualizando TipoNegociacao...');
     respostaSank = 'Atualizando TipoNegociacao...';
+    await LoginSankhya();
     await api
       .post(
         `/api/Sankhya/ReceberDados?tabela=TipoNegociacao&vendedorId=${usuario.username}`
@@ -1811,7 +1812,6 @@ async function popularProd(produto: iproduto[]) {
           setTabelarro2('Erro ao receber dados para a tabela TipoNegociacao');
         }
 
-        await LoginSankhya();
         await SalvarNaturezaPadraoTipoNegociacao(usuario.username);
         receberDadosSankhyaParceiro();
       })
