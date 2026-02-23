@@ -1242,7 +1242,7 @@ async function popularProd(produto: iproduto[]) {
                   , TPV.DHALTER`;
     await api
       .post(`/api/Sankhya/DadosDashSankhya?sql=${encodeURIComponent(sql)}`)
-      .then((response) => {
+      .then(async (response) => {
         const data = response.data.responseBody.rows;
         const result = data.map((curr: any) => {
           return {
@@ -1254,6 +1254,7 @@ async function popularProd(produto: iproduto[]) {
         console.log('dadostipo1', data);
         console.log('dadostipo2', result);
         popularTiponeg(result);
+        await SalvarNaturezaPadraoTipoNegociacao(codVend);
       })
       .catch((error) => {
         console.log('erro ao receber dados coordenador', error);
